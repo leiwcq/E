@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\E.Interface\E.Interface.csproj" />
+    <ProjectReference Include="..\E.Common\E.Common.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if not exist &quot;$(ProjectDir)..\Outputs&quot; md &quot;$(ProjectDir)..\Outputs&quot;&#xD;&#xA;copy &quot;$(TargetDir)&quot; &quot;$(ProjectDir)..\Outputs\&quot;" />
+  </Target>
+
+</Project>
