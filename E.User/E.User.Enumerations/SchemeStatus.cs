@@ -10,7 +10,7 @@ namespace E.User.Enumerations
     {
         Receive = 0,
         Paying = 10,
-        Wating =20,
+        Wating = 20,
         Bonus = 30,
         Complete = 40,
         Refund = 50,

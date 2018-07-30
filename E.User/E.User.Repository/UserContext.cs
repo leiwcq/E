@@ -9,6 +9,8 @@ namespace E.User.Repository
         public DbSet<Models.Account> Accounts { get; set; }
 
         public DbSet<Models.AccountChangeLog> AccountChangeLogs { get; set; }
+        public DbSet<Models.Scheme> Schemes { get; set; }
+        public DbSet<Models.SchemeGatewayLog> SchemeGatewayLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,7 +33,7 @@ namespace E.User.Repository
                 entity.HasIndex(e => e.LogId).IsUnique();
                 entity.HasIndex(e => e.AccountId);
                 entity.HasIndex(e => e.UserId);
-                entity.HasIndex(e => new {e.UserId, e.OperatorTime});
+                entity.HasIndex(e => new { e.UserId, e.OperatorTime });
             });
 
             modelBuilder.Entity<Models.Scheme>(entity =>
@@ -39,9 +41,9 @@ namespace E.User.Repository
                 entity.HasIndex(e => e.SchemeIndex).IsUnique();
                 entity.HasIndex(e => e.SchemeId);
                 entity.HasIndex(e => e.UserId);
-                entity.HasIndex(e => new {e.UserId, e.GameId});
-                entity.HasIndex(e => new {e.UserId, e.GameId, e.Status, e.CreateTime});
-                entity.HasIndex(e => new {e.UserId, e.GameId, e.Status, e.PaymentStatus, e.CreateTime});
+                entity.HasIndex(e => new { e.UserId, e.GameId });
+                entity.HasIndex(e => new { e.UserId, e.GameId, e.Status, e.CreateTime });
+                entity.HasIndex(e => new { e.UserId, e.GameId, e.Status, e.PaymentStatus, e.CreateTime });
             });
 
             modelBuilder.Entity<Models.SchemeGatewayLog>(entity =>
