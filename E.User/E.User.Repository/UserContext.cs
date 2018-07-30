@@ -33,6 +33,24 @@ namespace E.User.Repository
                 entity.HasIndex(e => e.UserId);
                 entity.HasIndex(e => new {e.UserId, e.OperatorTime});
             });
+
+            modelBuilder.Entity<Models.Scheme>(entity =>
+            {
+                entity.HasIndex(e => e.SchemeIndex).IsUnique();
+                entity.HasIndex(e => e.SchemeId);
+                entity.HasIndex(e => e.UserId);
+                entity.HasIndex(e => new {e.UserId, e.GameId});
+                entity.HasIndex(e => new {e.UserId, e.GameId, e.Status, e.CreateTime});
+                entity.HasIndex(e => new {e.UserId, e.GameId, e.Status, e.PaymentStatus, e.CreateTime});
+            });
+
+            modelBuilder.Entity<Models.SchemeGatewayLog>(entity =>
+            {
+                entity.HasIndex(e => e.GatewayLogId).IsUnique();
+                entity.HasIndex(e => e.SchemeIndex);
+                entity.HasIndex(e => e.GatewayName);
+                entity.HasIndex(e => new { e.GatewayName, e.CreateTime });
+            });
         }
     }
 }
